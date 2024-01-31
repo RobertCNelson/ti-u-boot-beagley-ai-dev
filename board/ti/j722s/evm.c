@@ -15,6 +15,7 @@
 #include <spl.h>
 
 #include "../common/board_detect.h"
+#include "../common/rtc.c"
 
 #ifdef CONFIG_TI_I2C_BOARD_DETECT
 /*
@@ -57,6 +58,9 @@ int checkboard(void)
 
 int board_init(void)
 {
+	if (IS_ENABLED(CONFIG_BOARD_HAS_32K_RTC_CRYSTAL))
+		board_rtc_init();
+
 	return 0;
 }
 
